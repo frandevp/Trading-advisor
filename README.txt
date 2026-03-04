@@ -14,11 +14,11 @@ AI trading advisor built with Python to analyze historical stock data and genera
 * Python
 * pandas
 * Ollama
+* Alpaca
 
 ## Project Structure
 
-.
-├── traderbot/              # Trading bot logic and modules
+
 ├── advisor_local_nvda.py   # AI advisor script for NVDA stock analysis
 └── README.md               # Project documentation
 
@@ -39,3 +39,4 @@ python advisor_local_nvda.py
 ## Disclaimer
 
 This project is for educational purposes only and does not provide financial advice.
+
