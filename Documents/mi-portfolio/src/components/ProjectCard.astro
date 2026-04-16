@@ -1,0 +1,10 @@
+---
+// componente para mostrar cada proyecto como una tarjeta
+const { titulo, descripcion, tecnologias, slug, github } = Astro.props
+---
+<div class="card">
+<h2><a href={`/proyectos/${slug}`}>{titulo}</a></h2>
+<p>{descripcion}</p>
+<p><small>{tecnologias.join(", ")}</small></p>
+<a href={github} target="_blank">Ver en GitHub →</a>
+</div>

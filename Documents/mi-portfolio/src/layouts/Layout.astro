@@ -1,0 +1,18 @@
+---
+// layout para las paginas en markdown
+const { frontmatter } = Astro.props
+---
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>{frontmatter.title} | Fran</title>
+<link rel="stylesheet" href="/styles/global.css">
+</head>
+<body>
+<main>
+<slot />
+<a href="/">← Volver</a>
+</main>
+</body>
+</html>

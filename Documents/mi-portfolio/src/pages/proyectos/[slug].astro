@@ -1,0 +1,35 @@
+---
+// detalle de proyecto, datos desde wordpress
+export async function getStaticPaths() {
+let proyectos = []
+try {
+const res = await fetch("http://localhost/wordpress/wp-json/wp/v2/posts")
+proyectos = await res.json()
+} catch (e) {
+console.log("WordPress no disponible")
+}
+return proyectos.map((p) => ({
+params: {slug: p.slug},
+props: {
+titulo: p.title.rendered,
+contenido: p.content.rendered.replace(/<[^>]+>/g, "")
+}
+}))
+}
+
+const { titulo, contenido } = Astro.props
+---
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>{titulo} | Fran</title>
+<link rel="stylesheet" href="/styles/global.css">
+</head>
+<body>
+<main>
+<h1>{titulo}</h1>
+<p>{contenido}</p>
+<a href="/proyectos">← Volver a proyectos</a>
+</main>
+</body>
+</html>

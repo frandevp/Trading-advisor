@@ -1,0 +1,37 @@
+---
+// traemos los proyectos desde wordpress
+let proyectos = []
+
+try {
+const res = await fetch("http://localhost/wordpress/wp-json/wp/v2/posts")
+const data = await res.json()
+proyectos = data.map((p) => ({
+slug: p.slug,
+titulo: p.title.rendered,
+descripcion: p.excerpt.rendered.replace(/<[^>]+>/g, "")
+}))
+} catch (e) {
+// si wordpress esta apagado mostramos lista vacia
+console.log("WordPress no disponible")
+}
+---
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Proyectos | Fran</title>
+<link rel="stylesheet" href="/styles/global.css">
+</head>
+<body>
+<main>
+<h1>Proyectos</h1>
+{proyectos.length === 0 && <p>No hay proyectos disponibles ahora mismo.</p>}
+{proyectos.map((p) => (
+<div class="card">
+<h2>{p.titulo}</h2>
+<p>{p.descripcion}</p>
+</div>
+))}
+<a href="/">← Volver</a>
+</main>
+</body>
+</html>
